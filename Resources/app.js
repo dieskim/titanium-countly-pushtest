@@ -186,11 +186,11 @@ if (Ti.Platform.name == 'iPhone OS'){
     Countly.enableDebug();
 
     // START Countly with Messaging - DEVELOPMENT TEST
-    Countly.startMessagingTest('1b741b601ba80b699a2a86e8234296de6bb184ad','http://e3host.com','1055280657328');
+    Countly.startMessagingTest('COUNLY_APP_KEY','http://yourserver.com','GCM_PROJECT_ID');
     //START Countly with Messaging - PRODUCTION
 
     // START Countly with Messaging - PRODUCTION
-    // Countly.startMessaging('327d3467123ca6da9e410350531020a372db31a8','http://172.245.12.16','10553533822');
+    //Countly.startMessaging('COUNLY_APP_KEY','http://yourserver.com','GCM_PROJECT_ID');
 
     // ADD EVENTLISTENTER AND FUNCTION TO MODULE
     Countly.addEventListener('receivePush',function(pushMessageData){
