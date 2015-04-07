@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:module xmlns:ti="http://ti.appcelerator.org" xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--
+		Similar to tiapp.xml, but contains module/platform specific
+		configuration in <iphone>, <android>, and <mobileweb> sections
+	-->
+	<iphone>
+	</iphone>
+	<android xmlns:android="http://schemas.android.com/apk/res/android">
+		<manifest>
+			<!-- START COUNT.LY PERMISSIONS SECTION-->   			
+	        <permission android:name="${tiapp.properties['id']}.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+			<uses-permission android:name="${tiapp.properties['id']}.permission.C2D_MESSAGE" />
+			<uses-permission android:name="android.permission.INTERNET"/>
+    		<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+   			<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+   			<uses-permission android:name="android.permission.WAKE_LOCK"/>
+   			
+	        <!-- END COUNT.LY PERMISSIONS SECTION-->
+	        <!-- START - Application SECTION -->
+	        <application>
+	        	<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />				
+		        <receiver
+		            android:name="count.ly.messaging.CountlyMessaging"
+		            android:permission="com.google.android.c2dm.permission.SEND" >
+		            <intent-filter>
+		                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+		                <category android:name="ly.count.android.api" />
+		            </intent-filter>
+		        </receiver>
+		        <service android:name="count.ly.messaging.CountlyMessagingService" >
+		            <meta-data android:name="broadcast_action" android:value="ly.count.android.api.broadcast" />
+		        </service> 
+		        <service android:name="count.ly.messaging.TitaniumProxyService" >
+		        </service>    
+				<service android:name="org.openudid.OpenUDID_service">
+					<intent-filter>
+						<action android:name="org.openudid.GETUDID" />
+					</intent-filter>
+				</service>          
+			</application>
+	        <!-- END - Application SECTION -->
+		</manifest>	
+	</android>
+	<mobileweb>
+	</mobileweb>
+</ti:module>
